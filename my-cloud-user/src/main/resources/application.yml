@@ -1,0 +1,34 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: my-cloud-user
+  datasource:
+    url: jdbc:mysql://139.155.68.87:3306/test?useUnicode=true&characterset=utf8
+    username: root
+    password: 123456
+mybatis:
+  type-aliases-package: com.ryans.entity
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  config-location: classpath:mybatis/config/mybatis-conf.xml
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+  instance:
+    prefer-ip-address: false
+#    hostname: localhost
+#    instance-id: user
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info	# 可以用【*】来表示开放所有的监控
+  info:
+    env:
+      enabled: true
+# info信息补充
+info:
+  app:
+    name: user
+    description: this is user module

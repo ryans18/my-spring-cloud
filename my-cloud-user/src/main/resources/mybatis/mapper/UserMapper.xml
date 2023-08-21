@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ryans.mapper.UserMapper">
+    <select id="getListAll" resultType="com.ryans.entity.User">
+        select * from user
+    </select>
+    <select id="getUser" resultType="com.ryans.entity.User" parameterType="Long">
+        select * from user where id = #{id}
+    </select>
+</mapper>

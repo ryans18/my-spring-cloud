@@ -1,0 +1,30 @@
+server:
+  port: 80
+spring:
+  application:
+    name: my-cloud-consumer
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+    register-with-eureka: false # 不向Eureka注册自己，消费者只需要获取服务，不需要注册自己。
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+# hystrix 默认超时时间为1s
+hystrix:
+  dashboard:
+    proxyStreamAllowList: localhost
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+      circuitBreaker:
+        requestVolumeThreshold: 10 # 超过10次就会触发判断熔断
+        errorThresholdPercentage: 50 # 超过10次的50%的错误比例就会触发熔断
+        sleepWindowInMilliseconds: 5000 # 熔断后休眠时间，默认5s
+
+feign:
+  circuitbreaker:
+    enabled: true

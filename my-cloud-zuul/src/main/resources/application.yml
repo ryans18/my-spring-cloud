@@ -1,0 +1,28 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: my-cloud-zuul
+eureka:
+  instance:
+    instance-id: my-cloud-zuul
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+zuul:
+  routes:
+    user.serviceId: my-cloud-user
+    user.path: /user-api/**
+  ignored-services: "*"
+  prefix: /route
+
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 60000
